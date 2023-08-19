@@ -1,7 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-int _printf(const char *format, ...);
-int _putchar(char c);
+#include <stdlib>
+#include <stdarg.h> /* used by variadic function*/
+#include <unistd.h> /* used by putchar*/
 
-#endif
+#endif /*end of the main.h */
