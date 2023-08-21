@@ -11,46 +11,58 @@
 
 int _printf(const char *format, ...)
 {
+int count = 0;
+
 va_list arguments;
-int counted_chars = 0;
 
 va_start(arguments, format);
+
 while (*format)
 {
-if (*format == '%')
-{
-format++;
-if (*format == 'c')
-{
-char c = va_arg(arguments, int);
-
-write(1, &c, 1);
-counted_chars++;
-}
-else if (*format == 's')
-{
-char *string = va_arg(arguments, char *);
-
-while (*string)
-{
-write(1, string, 1);
-string++;
-counted_chars+1 = (string-1);
-}
-}
-else if (*format == '%')
+if (*format != '%')
 {
 write(1, format, 1);
-counted_chars++;
-}
+count++;
 }
 else
 {
-write(1, format, 1);
-counted_chars++;
+format++;
+
+switch (*format)
+{
+case 'c':
+{
+char c = (char)va_arg(arguments, int);
+write(1, &c, 1);
+count++;
+break;
 }
+case 's':
+{
+const char *strng = va_arg(arguments, const char *);
+while (*strng)
+{
+write(1, strng, 1);
+strng++;
+count++;
+}
+break;
+}
+case '%':
+{
+write(1, format, 1);
+count++;
+break;
+}
+default:
+break;
+}
+}
+
 format++;
 }
+
 va_end(arguments);
-return (counted_chars);
+
+return (count);
 }
