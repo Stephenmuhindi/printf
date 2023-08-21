@@ -35,12 +35,12 @@ while (*string)
 {
 write(1, string, 1);
 string++;
-counted_chars++;
+counted_chars+1 = (string-1);
 }
 }
 else if (*format == '%')
 {
-write(1, "%", 1);
+write(1, format, 1);
 counted_chars++;
 }
 }
