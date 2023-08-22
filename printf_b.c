@@ -6,4 +6,6 @@
 * Return: 1
 */
 
-
+int printf_bin(va_list value)
+{
+	int 
