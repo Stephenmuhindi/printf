@@ -1,57 +1,55 @@
-#include "main.h"
 #include <stdarg.h>
-
+#include <unistd.h>
+#include "main.h"
 /**
- * _printf - displays the string to handle
- * @format: specifiers
- * Retuns: number of bytes or string
- */
+* _printf - displays according to format.
+* @format: char *.
+* @...: variable arguments
+* Return: amount of chars printed
+*/
 
 int _printf(const char *format, ...)
 {
-	unsigned int q, counter = 0, counter_string = 0;
-
-	va_list(arguments);
-
-	if
-		(!format || (format[0] == '%' && format[1] == '\0'))
-	return (-1);
+	va_list arguments;
+	int counted_chars = 0;
 
 	va_start(arguments, format);
-
-	for (q = 0; format[q] != '\0'; q++)
+	while (*format)
 	{
-		if (format[q] != "%")
+		if (*format == '%')
 		{
-			putc(format[q]);
-		}
-		else if (format[q] == '%' && format[q + 1] ==  'c')
-		{
-			putc(va_arg(arguments, int);
-					q++;
-		}
-		else if (format[q] == '%' && format[q + 1] ==  'd')
-		{
-		putc(va_arg(arguments, int);
-				q++;
-		}
-		else if (format[q] == '%' && format[q + 1] == 's')
-		{
-		counter_string = (va_args(arguments, char *);
-				counter += (counter_string - 1);
-		}
-		else if (format[q] == '%' && format[q + 1] == '%')
-		{
-		putc('%');
-		}
-		else if (format[q] == '%' && format[q + 1] ==  'i')
-		{
-		putc(va_arg(arguments, int);
-		q++;
-		}
-		counter++;
+			format++;
+			if (*format == 'c')
+			{
+				char c = va_arg(arguments, int);
 
-		va_end(arguments);
+				write(1, &c, 1);
+				counted_chars++;
+			}
+			else if (*format == 's')
+			{
+				char *string = va_arg(arguments, char *);
 
-		return (counter);
+				while (*string)
+				{
+					write(1, string, 1);
+					string++;
+					counted_chars++;
+				}
+			}
+			else if (*format == '%')
+			{
+				write(1, "%", 1);
+				counted_chars++;
+			}
+		}
+		else
+		{
+			write(1, format, 1);
+			counted_chars++;
+		}
+		format++;
+	}
+	va_end(arguments);
+	return (counted_chars);
 }
