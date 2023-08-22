@@ -1,13 +1,16 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdlib>
 #include <stdio.h>
+#include <stdarg.h>
+#include <unistd.h>
 #include <stdlib.h>
-#include <stdarg.h> /* used by variadic function*/
-#include <unistd.h> /* used by putchar*/
 
 int _printf(const char *format, ...);
+int printf_char(va_list args);
+int printf_string(va_list args);
+int printf_percent(va_list args);
+int printf_int(va_list args);
 int putc(char c);
-int putzz(char *c);
-#endif /*end of the main.h */
+
+#endif
