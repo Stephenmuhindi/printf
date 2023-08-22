@@ -1,16 +1,15 @@
+#include <stdio.h>
 #include "main.h"
 
 /**
-* printf_char - character printed
-* @value: argument
-* Return: 1
+* print_character - prints chars
+* @c: char
+* Return: no of chars
 */
 
-int printf_char(va_list value)
+int print_character(char c)
 {
-	char g;
-
-	g = va_arg(value, int);
-	_putc(g);
-	return (1);
+    write(1, &c, 1);
+    return (1);
 }
+
