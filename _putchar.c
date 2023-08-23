@@ -1,11 +1,12 @@
-#include <unistd.h>
+#include <stdio.h>
+#include "hols.h"
 
 /**
- * putc - displays c to stdout
+ * write_char - displays c to stdout
  * @c: input
  * Return: On success 1. alternatively -1 
  */
-int putc(char c)
+int write_char(char c)
 {
 	return (write(1, &c, 1));
 }
