@@ -1,11 +1,13 @@
 #include <unistd.h>
+#include <stdio.h>
 
 /**
- * putc - displays c to stdout
+ * _putchar - displays c to stdout
  * @c: input
- * Return: On success 1. alternatively -1 
+ * Return: On success 1. alternatively -1
  */
-int putc(char c)
+
+int _putchar(char c)
 {
 	return (write(1, &c, 1));
 }
