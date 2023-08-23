@@ -3,11 +3,17 @@
 #include <stdarg.h>
 #include <stdio.h> /* Include the necessary header for putchar*/
 
+/**
+ *  _printf - displays through stdout
+ *  @format: specifier
+ *  Return: amount of bytes
+ */
+
 int _printf(const char *format, ...)
 {
 	unsigned int q;
-	int counter = 0; /* Declare and initialize counter*/
-	int counter_string = 0; /* Declare and initialize counter_string*/
+	int count = 0; /* Declare and initialize count*/
+	int count_str = 0; /* Declare and initialize count_string*/
 
 	va_list arguments;
 
@@ -32,8 +38,8 @@ int _printf(const char *format, ...)
 			char *str = va_arg(arguments, char *);
 
 			puts(str); /* Use puts to output a string*/
-			counter_string = strlen(str);
-			counter += (counter_string - 1);
+			count_str = strlen(str);
+			count += (count_str - 1);
 			q++;
 		}
 		else if (format[q + 1] == '%')
@@ -41,8 +47,8 @@ int _printf(const char *format, ...)
 			_putchar('%');
 			q++;
 		}
-		counter++;
+		count++;
 	}
 	va_end(arguments);
-	return (counter);
+	return (count);
 }
