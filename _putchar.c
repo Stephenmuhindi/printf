@@ -1,5 +1,8 @@
-#include <unistd.h>
 #include <stdio.h>
+#include "main.h"
+
+#include <unistd.h>
+
 
 /**
  * _putchar - displays c to stdout
