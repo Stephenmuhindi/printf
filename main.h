@@ -10,4 +10,6 @@
 int _printf(const char *format, ...);
 int _puts(char *c);
 int _putchar(char c);
+int print_int(va_list args);
+int print_deci(va_list args);
 #endif/*end of main.h*/
