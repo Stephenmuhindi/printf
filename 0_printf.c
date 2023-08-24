@@ -7,13 +7,11 @@
  * @format: specifiers
  * Return: amount of bytes
  */
-
 int _printf(const char *format, ...)
 {
 	unsigned int q;
 	int count = 0; /* Declare and initialize counter*/
 	int count_str = 0; /* Declare and initialize counter_string*/
-
 	va_list args;
 
 	if (!format || (format[0] == '%' && format[1] == '\0'))

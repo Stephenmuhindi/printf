@@ -1,12 +1,10 @@
 #ifndef MAIN_H
 #define MAIN_H
 
-#include <stdarg.h>
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <string.h>
 
 #define S_LONG 2
@@ -95,8 +93,5 @@ int is_digit(char);
 long int convert_size_number(long int num, int size);
 long int convert_size_unsgnd(unsigned long int num, int size);
 int _printf(const char *format, ...);
-int print_character(char c);
-int _puts(char *c);
-int _putchar(char c);
 
 #endif/*end of main.h*/
