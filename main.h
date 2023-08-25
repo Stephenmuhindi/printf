@@ -95,5 +95,13 @@ int write_pointer(char buffer[], int ind, int length,
 int write_unsgnd(int is_negative, int ind,
 char buffer[],
 	int flags, int width, int precision, int size);
-
+int is_prints(char g);
+int append_hex_code(char ascii_code, char buf[], int y);
+int is_dig(char k);
+long int vert_size_no(long int number, int size);
+long int vert_size_unsigned(unsigned long int number, int size);
+int handle_pt(const char *format, int *ind, va_list list, char buf[],
+                int flags, int width, int precision, int size);
+int get_width(const char *format, int *j, va_list list);
+int get_size(const char *format, int *d);
 #endif /*main.h*/
