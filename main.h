@@ -101,7 +101,8 @@ int is_dig(char k);
 long int vert_size_no(long int number, int size);
 long int vert_size_unsigned(unsigned long int number, int size);
 int handle_pt(const char *format, int *ind, va_list list, char buf[],
-                int flags, int width, int precision, int size);
+		int flags, int width, int precision, int size);
 int get_width(const char *format, int *j, va_list list);
 int get_size(const char *format, int *d);
+
 #endif /*main.h*/

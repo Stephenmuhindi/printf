@@ -14,6 +14,7 @@ int print_char(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
 {
 	char c = va_arg(types, int);
+
 	return (handle_write_char(c, buffer, flags, width, precision, size));
 }
 /**
@@ -43,29 +44,31 @@ int print_string(va_list types, char buffer[],
 		str = "(null)";
 		if (precision >= 6)
 			str = "      ";
-	} while (str[length] != '\0')
+	}
+	while (str[length] != '\0')
 		length++;
-
-		if (precision >= 0 && precision < length)
-			length = precision;
-		if (width > length)
+	if (precision >= 0 && precision < length)
+		length = precision;
+	if (width > length)
+	{
+		if (flags & F_MINUS)
 		{
-			if (flags & F_MINUS)
-			{
-				write(1, &str[0], length);
-				for (q = width - length; q > 0; q--)
-					write(1, " ", 1);
-				return (width);
-			}
-			else
-			{
-				for (q = width - length; q > 0; q--)
-					write(1, " ", 1);
-				write(1, &str[0], length);
-				return (width);
-			}
+			write(1, &str[0], length);
+			for (q = width - length; q > 0; q--)
+				write(1, " ", 1);
+
+			return (width);
 		}
-		return (write(1, str, length));
+		else
+		{
+			for (q = width - length; q > 0; q--)
+				write(1, " ", 1);
+			write(1, &str[0], length);
+
+			return (width);
+		}
+	}
+	return (write(1, str, length));
 }
 /**
  * print_percent - displays percent
@@ -101,26 +104,26 @@ int print_percent(va_list types, char buffer[],
 int print_int(va_list types, char buffer[],
 		int flags, int width, int precision, int size)
 {
-	int t = BUFF_SIZE - 2;
+	int q = BUFF_SIZE - 2;
 	int is_negative = 0;
-	long int t = va_arg(types, long int);
+	long int n = va_arg(types, long int);
 	unsigned long int num;
 
-	t = convert_size_number(t, size);
+	n = vert_size_unsigned(n, size);
 
-	if (t == 0)
+	if (n == 0)
 		buffer[q--] = '0';
 	buffer[BUFF_SIZE - 1] = '\0';
-	num = (unsigned long int)t;
+	num = (unsigned long int)n;
 
-	if (t < 0)
+	if (n < 0)
 	{
-		num = (unsigned long int)((-1) * t);
+		num = (unsigned long int)((-1) * n);
 		is_negative = 1;
 	}
 	while (num > 0)
 	{
-		buffer[i--] = (num % 10) + '0';
+		buffer[q--] = (num % 10) + '0';
 		num /= 10;
 	}
 	q++;

@@ -21,7 +21,7 @@ int print_pointer(va_list types, char buffer[],
 
 	UNUSED(width);
 	UNUSED(size);
-	if (addrs == NULL)
+	if (adrs == NULL)
 		return (write(1, "(nil)", 5));
 
 	buffer[BUFF_SIZE - 1] = '\0';
@@ -70,10 +70,10 @@ int print_non_printable(va_list types, char buffer[],
 		return (write(1, "(null)", 6));
 	while (str[q] != '\0')
 	{
-		if (is_printable(str[i]))
+		if (is_prints(str[q]))
 			buffer[q + offset] = str[q];
 		else
-			offset += append_hexa_code(str[q], buffer, q + offset);
+			offset += append_hex_code(str[q], buffer, q + offset);
 
 		q++;
 	}
@@ -108,11 +108,10 @@ int print_reverse(va_list types, char buffer[],
 		UNUSED(precision);
 		str = ")Null(";
 	}
-	for (q = 0; str[q]; q++);
-
+	for (q = 0; str[q]; q++)
 	for (q = q - 1; q >= 0; q--)
 	{
-		char z = str[i];
+		char z = str[q];
 
 		write(1, &z, 1);
 		count++;

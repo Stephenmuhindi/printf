@@ -6,7 +6,7 @@
  * @i: parameter.
  * Return: flags:
  */
-int get_flags(const char *format, int *i)
+int get_flags(const char *format, int *q)
 {
 	int m, curr_q;
 	int flags = 0;
