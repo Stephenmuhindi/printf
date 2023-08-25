@@ -21,21 +21,18 @@ int _printf(const char *format, ...)
 		if (format[q] != '%')
 		{
 			_putchar(format[q]); /* Use putchar to output a single character */
-		}
-		else if (format[q + 1] == 'c')
+		} else if (format[q + 1] == 'c')
 		{
 			_putchar(va_arg(args, int));
 			q++;
-		}
-		else if (format[q + 1] == 's')
+		} else if (format[q + 1] == 's')
 		{
 			char *str = va_arg(args, char *);
 
 			_puts(str); /* Use puts to output a string */
 			count += strlen(str);
 			q++;
-		}
-		else if (format[q + 1] == 'd' || format[q + 1] == 'i')
+		} else if (format[q + 1] == 'd' || format[q + 1] == 'i')
 		{
 			int num = va_arg(args, int);
 			char my_str[20];
@@ -43,8 +40,7 @@ int _printf(const char *format, ...)
 			sprintf(my_str, "%d", num);
 			count += write(1, my_str, strlen(my_str));
 			q++;
-		}
-		else if (format[q + 1] == '%')
+		} else if (format[q + 1] == '%')
 		{
 			_putchar('%');
 			q++;
