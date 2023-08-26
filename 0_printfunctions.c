@@ -109,7 +109,7 @@ int print_int(va_list types, char buffer[],
 	long int n = va_arg(types, long int);
 	unsigned long int num;
 
-	n = vert_size_unsigned(n, size);
+	n = convert_size_unsgnd(n, size);
 
 	if (n == 0)
 		buffer[q--] = '0';

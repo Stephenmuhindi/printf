@@ -6,21 +6,19 @@
 * @d: args
 * Return: precision
 */
-
-int get_size(const char *format, int *d)
+int get_size(const char *format, int *q)
 {
+	int curr_q = *q + 1;
 	int sz = 0;
-	int arr_d = *d + 1;
 
-	if (format[arr_d] == 'l')
-		sz == S_LONG;
-	else if (format[arr_d] == 'h')
-		sz == S_SHORT;
+	if (format[curr_q] == 'l')
+		sz = S_LONG;
+	else if (format[curr_q] == 'h')
+		sz = S_SHORT;
 
 	if (sz == 0)
-		*d = arr_d - 1;
+		*q = curr_q - 1;
 	else
-		*d = arr_d;
+		*q = curr_q;
 	return (sz);
 }
-
